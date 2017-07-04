@@ -1,5 +1,10 @@
-<div style="margin-top: 20px" *ngIf="form" >
-  <br>
+<div *ngIf="form"  
+    style="margin-top: 20px; 
+            border: solid; 
+            border-radius: 15px; 
+            padding: 10px;
+            background-color: lightgrey;">
+
   <div><h5>Detalhes do Form:</h5></div>
   
   <pre>Form Valido: {{ form.valid }}</pre>
