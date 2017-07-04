@@ -2,16 +2,31 @@
   <form #f="ngForm" (ngSubmit)="onSubmit(f)">
     <div class="col-md-4">
 
-      <div class="form-group">
+      <div class="form-group" [class.has-danger]="!email.valid && email.touched">
         <label for="email">Email:</label>
-        <input type="email" class="form-control" id="email" placeholder="Email" name="email" value="" required email #email>
+        <input type="email" class="form-control" name="email" id="email" placeholder="Email" value="" required email ngModel #email="ngModel">
+
+        <div *ngIf="!email.valid && email.touched"  class="alert alert-danger" role="alert">
+          <strong>Atencao!</strong> Email incorreto.
+        </div>
+
+        <div>
+          {{ email.className }}
+        </div>
       </div>
 
       <br>
       
-      <div class="form-group">
+      <div class="form-group" [class.has-danger]="!senha.valid && senha.touched">
         <label for="senha">Senha:</label>
-        <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required>
+        <input type="password" class="form-control" id="senha" name="senha" placeholder="Senha" required ngModel #senha="ngModel">
+        
+        <div *ngIf="!senha.valid && senha.touched" class="alert alert-danger" role="alert">
+          <strong>Atencao!</strong>Senha obrigatoria.
+        </div>
+
+        <div>{{ senha.className }}</div>
+      
       </div>
 
       <br>
@@ -19,5 +34,7 @@
       <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Login</button>
       
     </div>
+
+    <app-form-debug [form]="f"></app-form-debug>
   </form>
 </div>
